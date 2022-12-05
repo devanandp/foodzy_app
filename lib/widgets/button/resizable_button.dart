@@ -1,6 +1,7 @@
+///Customized Button used across the app
+
 import 'package:foodzy/foodzy_app.dart';
 
-///Customized Button used across the app
 class ResizableButton extends StatefulWidget {
   const ResizableButton(
       {Key? key,

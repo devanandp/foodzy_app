@@ -1,6 +1,7 @@
+///Customized Model used across the app
+
 import 'package:foodzy/foodzy_app.dart';
 
-///Customized Model used across the app
 class CustomDialog extends StatefulWidget {
   const CustomDialog(
       {Key? key,

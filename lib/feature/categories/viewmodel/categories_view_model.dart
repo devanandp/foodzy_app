@@ -1,3 +1,5 @@
+///Categories related Provider containing getters and setters
+
 import 'package:foodzy/foodzy_app.dart';
 
 class CategoriesViewModel extends ChangeNotifier {

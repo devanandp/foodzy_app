@@ -1,6 +1,7 @@
+///Provider class for Cart related actions
+
 import 'package:foodzy/foodzy_app.dart';
 
-///Provider class for Cart related actions
 class CartViewModel extends ChangeNotifier {
   ///Getter for Cart quantity
   int get cartQuantity {

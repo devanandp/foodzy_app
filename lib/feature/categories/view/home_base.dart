@@ -1,3 +1,5 @@
+///Creates the Home base for Tab Navigations
+
 import 'package:foodzy/foodzy_app.dart';
 
 class HomeBase extends StatefulWidget {

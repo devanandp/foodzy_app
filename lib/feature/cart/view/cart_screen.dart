@@ -1,6 +1,7 @@
+///UI for Cart Screen
+
 import 'package:foodzy/foodzy_app.dart';
 
-///UI for Cart SCreen
 class CartScreen extends StatefulWidget {
   const CartScreen({Key? key}) : super(key: key);
 

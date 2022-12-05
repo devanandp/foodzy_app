@@ -1,9 +1,10 @@
+///App Build starts from here and Providers are instantiated
+
 import 'package:foodzy/foodzy_app.dart';
 
 class FoodzyApp extends StatelessWidget {
   const FoodzyApp({Key? key}) : super(key: key);
 
-  ///App Build starts from here and Providers are instantiated
   @override
   Widget build(BuildContext context) => MultiProvider(
         providers: [

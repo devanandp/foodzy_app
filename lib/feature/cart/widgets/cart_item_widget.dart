@@ -1,3 +1,5 @@
+///Cart Individual Item Widget
+
 import 'package:foodzy/foodzy_app.dart';
 
 class CartItemWidget extends StatefulWidget {

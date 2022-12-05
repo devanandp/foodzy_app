@@ -1,4 +1,4 @@
-///Repository for Categories related action
+///Repository for Categories related actions
 
 import 'package:foodzy/foodzy_app.dart';
 

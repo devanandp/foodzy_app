@@ -1,3 +1,4 @@
+///UI Screen for Categories Listing - Main Screen
 import 'package:foodzy/foodzy_app.dart';
 
 class CategoriesScreen extends StatefulWidget {

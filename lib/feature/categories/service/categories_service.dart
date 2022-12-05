@@ -1,3 +1,5 @@
+///Services handling API Calls and provide the data related to Categories
+
 import 'package:foodzy/foodzy_app.dart';
 import 'package:http/http.dart' as http;
 
