@@ -48,3 +48,7 @@ export 'package:foodzy/utils/images.dart';
 ///Base
 export 'package:foodzy/base/api_response.dart';
 export 'package:foodzy/base/app_exception.dart';
+
+///Tests
+export 'package:flutter_test/flutter_test.dart';
+
