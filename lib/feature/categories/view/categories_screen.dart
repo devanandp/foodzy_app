@@ -55,36 +55,39 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                     });
                   },
                   child: Container(
-                    height: 250,
                     width: 250,
-                    padding: const EdgeInsets.all(25),
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20),
                         border: Border.all(
                           color: primaryBlack,
                         ),
                         color: Colors.white),
-                    child: Column(
-                      children: [
-                        Image.asset(
-                          value.taxonomyData![index].name == 'Pasta'
-                              ? LocalImages().pasta
-                              : LocalImages().pizza,
-                          height: 100,
-                          width: 100,
-                        ),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        Text(
-                          value.taxonomyData![index].name!,
-                          style: const TextStyle(
-                            color: primaryBlack,
-                            fontSize: 20,
-                            fontWeight: FontWeight.normal,
+                    child: Center(
+                      child: ListView(
+                        padding: const EdgeInsets.all(10),
+                        children: [
+                          Image.asset(
+                            value.taxonomyData![index].name == 'Pasta'
+                                ? LocalImages().pasta
+                                : LocalImages().pizza,
+                            height: 100,
+                            width: 100,
                           ),
-                        )
-                      ],
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          Center(
+                            child: Text(
+                              value.taxonomyData![index].name!,
+                              style: const TextStyle(
+                                color: primaryBlack,
+                                fontSize: 20,
+                                fontWeight: FontWeight.normal,
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
                     ),
                   ),
                 );
@@ -101,274 +104,282 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
 
   ///Method to get Categories Detailed List with respect to each Category
   Widget getDetailsForCategory(String foodName, BuildContext context) {
-    return Column(children: [
-      Stack(
-        children: [
-          Stack(
-            children: [
-              Image.asset(
-                foodName == 'Pasta' ? LocalImages().pasta : LocalImages().pizza,
-                height: 250,
-                width: double.infinity,
-                fit: BoxFit.cover,
-              ),
-              Positioned(
-                top: 50,
-                left: 10,
-                child: IconButton(
-                    onPressed: () {
-                      setState(() {
-                        selectedIndex = 0;
-                      });
-                    },
-                    icon: const Icon(
-                      Icons.arrow_back_ios_outlined,
-                      color: Colors.white,
-                      size: 30,
-                    )),
-              ),
-            ],
-          ),
-          Positioned(
-            top: 100,
-            left: 30,
-            child: Text(foodName,
-                style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 50,
-                    fontWeight: FontWeight.bold)),
-          ),
-        ],
-      ),
-      const SizedBox(
-        height: 30,
-      ),
-      AsyncBuilder<CategoryDetailsModel>(
-        builder: (context, value) {
-          final List<Widget> foodListing = [];
-          for (int i = 0; i < value!.data!.length; i++) {
-            foodListing.add(Column(
+    return SingleChildScrollView(
+      child: Column(children: [
+        Stack(
+          children: [
+            Stack(
               children: [
-                Container(
-                  padding: const EdgeInsets.all(15),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          (value.data![i].variants![0].product!.metaFields !=
-                                      null &&
-                                  value.data![i].variants![0].product!
-                                      .metaFields!.isNotEmpty)
-                              ? Padding(
-                                  padding: const EdgeInsets.only(left: 8.0),
-                                  child: Text(value.data![i].title!,
-                                      style: const TextStyle(
-                                          color: primaryBlack,
-                                          fontSize: 25,
-                                          fontWeight: FontWeight.w500)),
-                                )
-                              : Text(value.data![i].title!,
-                                  style: const TextStyle(
-                                      color: primaryBlack,
-                                      fontSize: 25,
-                                      fontWeight: FontWeight.w500)),
-                          (value.data![i].variants![0].product!.metaFields !=
-                                      null &&
-                                  value.data![i].variants![0].product!
-                                      .metaFields!.isNotEmpty)
-                              ? Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceAround,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          const Text('Proteins',
-                                              style: TextStyle(
-                                                  color: primaryBlack,
-                                                  fontSize: 12,
-                                                  fontWeight: FontWeight.w500)),
-                                          Text(
-                                              '${value.data![i].variants![0].product!.metaFields![2].value} gr',
-                                              style: const TextStyle(
-                                                  color: primaryBlack,
-                                                  fontSize: 10,
-                                                  fontWeight:
-                                                      FontWeight.normal)),
-                                        ],
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          const Text('Carbohydrate',
-                                              style: TextStyle(
-                                                  color: primaryBlack,
-                                                  fontSize: 12,
-                                                  fontWeight: FontWeight.w500)),
-                                          Text(
-                                              '${value.data![i].variants![0].product!.metaFields![3].value} gr',
-                                              style: const TextStyle(
-                                                  color: primaryBlack,
-                                                  fontSize: 10,
-                                                  fontWeight:
-                                                      FontWeight.normal)),
-                                        ],
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          const Text('Fibre',
-                                              style: TextStyle(
-                                                  color: primaryBlack,
-                                                  fontSize: 12,
-                                                  fontWeight: FontWeight.w500)),
-                                          Text(
-                                              '${value.data![i].variants![0].product!.metaFields![4].value} gr',
-                                              style: const TextStyle(
-                                                  color: primaryBlack,
-                                                  fontSize: 10,
-                                                  fontWeight:
-                                                      FontWeight.normal)),
-                                        ],
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: Stack(
-                                        children: [
-                                          CircularProgressIndicator(
-                                            value: getCaloriesProgress(value
-                                                .data![i]
-                                                .variants![0]
-                                                .product!
-                                                .metaFields![1]
-                                                .value
-                                                .toString()),
-                                            color: getCaloriesProgressColor(
-                                                value
-                                                    .data![i]
-                                                    .variants![0]
-                                                    .product!
-                                                    .metaFields![1]
-                                                    .value),
-                                            backgroundColor: primaryGrey,
-                                          ),
-                                          Positioned(
-                                            top: 10,
-                                            left: 10,
-                                            child: Text(
-                                                '${value.data![i].variants![0].product!.metaFields![1].value.toString()} \nkCal',
-                                                style: const TextStyle(
-                                                    color: primaryBlack,
-                                                    fontSize: 8,
-                                                    fontWeight:
-                                                        FontWeight.w400)),
-                                          )
-                                        ],
-                                      ),
-                                    )
-                                  ],
-                                )
-                              : const SizedBox(
-                                  height: 20,
-                                ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              _buildChip(value, i, context),
-                              (value.data![i].variants![0].price != null)
-                                  ? Padding(
-                                      padding:
-                                          const EdgeInsets.only(left: 30.0),
-                                      child: Text(
-                                          '${value.data![i].variants![0].price!.formatted}',
-                                          style: const TextStyle(
-                                              color: darkGrey,
-                                              fontSize: 18,
-                                              fontWeight: FontWeight.normal)),
-                                    )
-                                  : const Text('€1.00',
-                                      style: TextStyle(
-                                          color: darkGrey,
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.normal)),
-                            ],
-                          )
-                        ],
-                      ),
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(20),
-                        // Image border
-                        child: SizedBox.fromSize(
-                          size: const Size.fromRadius(60), // Image radius
-                          child: Image.asset(
-                              foodName == 'Pasta'
-                                  ? LocalImages().pasta
-                                  : LocalImages().pizza,
-                              fit: BoxFit.cover),
-                        ),
-                      )
-                    ],
-                  ),
+                Image.asset(
+                  foodName == 'Pasta'
+                      ? LocalImages().pasta
+                      : LocalImages().pizza,
+                  height: 250,
+                  width: double.infinity,
+                  fit: BoxFit.cover,
                 ),
-                Divider(
-                  thickness: 0.7,
-                  color: darkGrey.withOpacity(0.5),
-                  endIndent: 10,
-                  indent: 10,
+                Positioned(
+                  top: 50,
+                  left: 10,
+                  child: IconButton(
+                      onPressed: () {
+                        setState(() {
+                          selectedIndex = 0;
+                        });
+                      },
+                      icon: const Icon(
+                        Icons.arrow_back_ios_outlined,
+                        color: Colors.white,
+                        size: 30,
+                      )),
                 ),
               ],
-            ));
-          }
-          return Column(
-            children: [
-              ...foodListing,
-              Padding(
-                padding: const EdgeInsets.all(25.0),
-                child: ResizableButton(
-                  buttonText: 'Proceed to Cart',
-                  buttonColor: primaryOrange,
-                  buttonTap: () async {
-                    Navigator.of(context).pushNamed(AllRoutes().cartScreen);
-                  },
-                  buttonTextColor: primaryBlack,
-                  horizontalPadding: 0,
-                  verticalPadding: 20,
-                  sizeFont: 18,
-                ),
-              ),
-            ],
-          );
-        },
-        future: getCategoryDetails(foodName, context),
-        waiting: (context) => const CircularProgressIndicator(
-          color: primaryOrange,
+            ),
+            Positioned(
+              top: 100,
+              left: 30,
+              child: Text(foodName,
+                  style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 50,
+                      fontWeight: FontWeight.bold)),
+            ),
+          ],
         ),
-      ),
-    ]);
+        const SizedBox(
+          height: 30,
+        ),
+        AsyncBuilder<CategoryDetailsModel>(
+          builder: (context, value) {
+            final List<Widget> foodListing = [];
+            for (int i = 0; i < value!.data!.length; i++) {
+              foodListing.add(Column(
+                children: [
+                  Container(
+                    padding: const EdgeInsets.all(15),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            (value.data![i].variants![0].product!.metaFields !=
+                                        null &&
+                                    value.data![i].variants![0].product!
+                                        .metaFields!.isNotEmpty)
+                                ? Padding(
+                                    padding: const EdgeInsets.only(left: 8.0),
+                                    child: Text(value.data![i].title!,
+                                        style: const TextStyle(
+                                            color: primaryBlack,
+                                            fontSize: 25,
+                                            fontWeight: FontWeight.w500)),
+                                  )
+                                : Text(value.data![i].title!,
+                                    style: const TextStyle(
+                                        color: primaryBlack,
+                                        fontSize: 25,
+                                        fontWeight: FontWeight.w500)),
+                            (value.data![i].variants![0].product!.metaFields !=
+                                        null &&
+                                    value.data![i].variants![0].product!
+                                        .metaFields!.isNotEmpty)
+                                ? Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceAround,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            const Text('Proteins',
+                                                style: TextStyle(
+                                                    color: primaryBlack,
+                                                    fontSize: 12,
+                                                    fontWeight:
+                                                        FontWeight.w500)),
+                                            Text(
+                                                '${value.data![i].variants![0].product!.metaFields![2].value} gr',
+                                                style: const TextStyle(
+                                                    color: primaryBlack,
+                                                    fontSize: 10,
+                                                    fontWeight:
+                                                        FontWeight.normal)),
+                                          ],
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            const Text('Carbohydrate',
+                                                style: TextStyle(
+                                                    color: primaryBlack,
+                                                    fontSize: 12,
+                                                    fontWeight:
+                                                        FontWeight.w500)),
+                                            Text(
+                                                '${value.data![i].variants![0].product!.metaFields![3].value} gr',
+                                                style: const TextStyle(
+                                                    color: primaryBlack,
+                                                    fontSize: 10,
+                                                    fontWeight:
+                                                        FontWeight.normal)),
+                                          ],
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            const Text('Fibre',
+                                                style: TextStyle(
+                                                    color: primaryBlack,
+                                                    fontSize: 12,
+                                                    fontWeight:
+                                                        FontWeight.w500)),
+                                            Text(
+                                                '${value.data![i].variants![0].product!.metaFields![4].value} gr',
+                                                style: const TextStyle(
+                                                    color: primaryBlack,
+                                                    fontSize: 10,
+                                                    fontWeight:
+                                                        FontWeight.normal)),
+                                          ],
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Stack(
+                                          children: [
+                                            CircularProgressIndicator(
+                                              value: getCaloriesProgress(value
+                                                  .data![i]
+                                                  .variants![0]
+                                                  .product!
+                                                  .metaFields![1]
+                                                  .value
+                                                  .toString()),
+                                              color: getCaloriesProgressColor(
+                                                  value
+                                                      .data![i]
+                                                      .variants![0]
+                                                      .product!
+                                                      .metaFields![1]
+                                                      .value),
+                                              backgroundColor: primaryGrey,
+                                            ),
+                                            Positioned(
+                                              top: 10,
+                                              left: 10,
+                                              child: Text(
+                                                  '${value.data![i].variants![0].product!.metaFields![1].value.toString()} \nkCal',
+                                                  style: const TextStyle(
+                                                      color: primaryBlack,
+                                                      fontSize: 8,
+                                                      fontWeight:
+                                                          FontWeight.w400)),
+                                            )
+                                          ],
+                                        ),
+                                      )
+                                    ],
+                                  )
+                                : const SizedBox(
+                                    height: 20,
+                                  ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                _buildChip(value, i, context),
+                                (value.data![i].variants![0].price != null)
+                                    ? Padding(
+                                        padding:
+                                            const EdgeInsets.only(left: 30.0),
+                                        child: Text(
+                                            '${value.data![i].variants![0].price!.formatted}',
+                                            style: const TextStyle(
+                                                color: darkGrey,
+                                                fontSize: 18,
+                                                fontWeight: FontWeight.normal)),
+                                      )
+                                    : const Text('€1.00',
+                                        style: TextStyle(
+                                            color: darkGrey,
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.normal)),
+                              ],
+                            )
+                          ],
+                        ),
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(20),
+                          // Image border
+                          child: SizedBox.fromSize(
+                            size: const Size.fromRadius(40), // Image radius
+                            child: Image.asset(
+                                foodName == 'Pasta'
+                                    ? LocalImages().pasta
+                                    : LocalImages().pizza,
+                                fit: BoxFit.cover),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                  Divider(
+                    thickness: 0.7,
+                    color: darkGrey.withOpacity(0.5),
+                    endIndent: 10,
+                    indent: 10,
+                  ),
+                ],
+              ));
+            }
+            return Column(
+              children: [
+                ...foodListing,
+                Padding(
+                  padding: const EdgeInsets.all(25.0),
+                  child: ResizableButton(
+                    buttonText: 'Proceed to Cart',
+                    buttonColor: primaryOrange,
+                    buttonTap: () async {
+                      Navigator.of(context).pushNamed(AllRoutes().cartScreen);
+                    },
+                    buttonTextColor: primaryBlack,
+                    horizontalPadding: 0,
+                    verticalPadding: 20,
+                    sizeFont: 18,
+                  ),
+                ),
+              ],
+            );
+          },
+          future: getCategoryDetails(foodName, context),
+          waiting: (context) => const CircularProgressIndicator(
+            color: primaryOrange,
+          ),
+        ),
+      ]),
+    );
   }
 
   ///Widget for Quantity Chip and related actions included

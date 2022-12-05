@@ -26,8 +26,8 @@ class _CartScreenState extends State<CartScreen> {
       ),
       body: cart.items.isNotEmpty
           ? SingleChildScrollView(
+              physics: const ClampingScrollPhysics(),
               child: Container(
-                height: MediaQuery.of(context).size.height,
                 padding: const EdgeInsets.symmetric(horizontal: 20.0),
                 width: double.infinity,
                 child: Column(
@@ -131,6 +131,9 @@ class _CartScreenState extends State<CartScreen> {
                       verticalPadding: 20,
                       sizeFont: 18,
                     ),
+                    const SizedBox(
+                      height: 30,
+                    )
                   ],
                 ),
               ),

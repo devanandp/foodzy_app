@@ -27,6 +27,8 @@ class _CartItemWidgetState extends State<CartItemWidget> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 ClipRRect(
                   borderRadius: BorderRadius.circular(20),
@@ -41,29 +43,30 @@ class _CartItemWidgetState extends State<CartItemWidget> {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(left: 15),
+                  padding: const EdgeInsets.only(left: 10),
                   child: Row(
                     children: [
                       Text('${widget.quantity}',
                           style: const TextStyle(
                               color: primaryBlack,
-                              fontSize: 16,
+                              fontSize: 14,
                               fontWeight: FontWeight.w400)),
-                      const Text('   x',
+                      const Text(' x',
                           style: TextStyle(
                               color: primaryBlack,
-                              fontSize: 16,
+                              fontSize: 14,
                               fontWeight: FontWeight.w400)),
                       Container(
                         width: 160,
                         padding: const EdgeInsets.only(left: 15),
                         child: Text(
-                          '   ${widget.title}(€${widget.price})',
+                          '${widget.title}(€${widget.price})',
                           style: const TextStyle(
                               color: primaryBlack,
-                              fontSize: 16,
+                              fontSize: 14,
                               fontWeight: FontWeight.w400),
-                          maxLines: 2,
+                          maxLines: 3,
+                          textAlign: TextAlign.center,
                         ),
                       ),
                     ],
@@ -72,6 +75,8 @@ class _CartItemWidgetState extends State<CartItemWidget> {
               ],
             ),
             Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Text(
                     '€${double.parse((double.parse(widget.price!) * widget.quantity!).toStringAsPrecision(2))}',
